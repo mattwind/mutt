@@ -7,8 +7,9 @@ Version 1.5.23 with sidebar and trash patches. IMAP, POP, and SMTP support with 
 https://github.com/mattwind/tokyocabinet
 
 ### How to compile and install
-git clone https://github.com/mattwind/mutt.git
 
+    git clone https://github.com/mattwind/mutt.git
+    cd ./mutt/src
     ./configure --with-homespool=/var/spool/mail /
     --sysconfdir=/etc /
     --prefix=/usr /
