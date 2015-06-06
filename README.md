@@ -3,9 +3,6 @@ The Mutt E-Mail Client <http://www.mutt.org>
 
 Version 1.5.23 with sidebar and trash patches. Support IMAP, POP, SMTP and header cache.
 
-### GnuGP (recommended but optional)
-
-
 ### Prerequisites
 DB for header cache (required) 
 https://github.com/mattwind/tokyocabinet
