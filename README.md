@@ -32,6 +32,9 @@ If everything looks good
 
     mkdir ~/.mutt
     touch ~/.muttrc
+    touch ~/.mutt/cache/headers
+    touch ~/.mutt/cache/bodies
+    touch ~/.mutt/certificates
     touch ~/.mutt/aliases
     wget -q -O ~/.mutt/aliases.sh https://raw.githubusercontent.com/mattwind/mutt/master/scripts/aliases.sh
     wget -q -O ~/.muttrc https://raw.githubusercontent.com/mattwind/mutt/master/configs/muttrc
