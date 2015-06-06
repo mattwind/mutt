@@ -17,7 +17,7 @@ https://github.com/mattwind/tokyocabinet
     --enable-pop --enable-smtp --enable-imap \
     --with-sasl --with-ssl --with-regex \
     --enable-hcache --without-bdb --without-gdbm --with-tokyocabinet \
-    CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib &&
+    CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib
     make
 
 Test before installation
