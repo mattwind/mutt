@@ -1,0 +1,22 @@
+--- commands.c	Wed Nov  5 10:41:31 2003
++++ commands.c	Tue Nov 11 02:43:35 2003
+@@ -663,11 +663,15 @@ void _mutt_save_message (HEADER *h, CONT
+   if (decode || decrypt)
+     mutt_parse_mime_message (Context, h);
+ 
+-  if (mutt_append_message (ctx, Context, h, cmflags, chflags) == 0 && delete)
++  if (mutt_append_message (ctx, Context, h, cmflags, chflags) == 0)
+   {
+-    mutt_set_flag (Context, h, M_DELETE, 1);
+-    if (option (OPTDELETEUNTAG))
+-      mutt_set_flag (Context, h, M_TAG, 0);
++    if (delete)
++    {
++      mutt_set_flag (Context, h, M_DELETE, 1);
++      if (option (OPTDELETEUNTAG))
++	mutt_set_flag (Context, h, M_TAG, 0);
++    }
++    mutt_set_flag (Context, h, M_APPENDED, 1);
+   }
+ }
+ 

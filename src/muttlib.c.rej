@@ -1,0 +1,13 @@
+--- muttlib.c	Wed Nov  5 10:41:32 2003
++++ muttlib.c	Tue Nov 11 02:43:35 2003
+@@ -1181,7 +1181,9 @@ int mutt_save_confirm (const char *s, st
+       return 1;
+     }
+ 
+-    if (option (OPTCONFIRMAPPEND))
++    if (option (OPTCONFIRMAPPEND) &&
++	(!TrashPath || (mutt_strcmp (s, TrashPath) != 0)))
++      /* if we're appending to the trash, there's no point in asking */
+     {
+       snprintf (tmp, sizeof (tmp), _("Append messages to %s?"), s);
+       if ((rc = mutt_yesorno (tmp, M_YES)) == M_NO)

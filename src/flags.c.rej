@@ -1,0 +1,17 @@
+--- flags.c	Fri Jan 31 00:48:07 2003
++++ flags.c	Tue Nov 11 02:43:35 2003
+@@ -65,7 +65,13 @@ void _mutt_set_flag (CONTEXT *ctx, HEADE
+       else if (h->deleted)
+       {
+ 	h->deleted = 0;
+-	if (upd_ctx) ctx->deleted--;
++	if (upd_ctx)
++	{
++	  ctx->deleted--;
++	  if (h->appended)
++	    ctx->appended--;
++	}
++	h->appended = 0; /* when undeleting, also reset the appended flag */
+ #ifdef USE_IMAP
+         /* see my comment above */
+ 	if (ctx->magic == M_IMAP) 
