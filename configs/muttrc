@@ -1,49 +1,59 @@
 # MUTT
-set editor              = 'vim -c "set spell spelllang=en_us"'
-set followup_to         = yes
-set mail_check          = 150
-set beep_new
+set editor				= 'vim -c "set spell spelllang=en_us"'
+set followup_to			= yes
+set wait_key			= no
+set mail_check			= 150
+set timeout				= 3
 set askcc
+set beep_new
+set delete
+set quit
+set pipe_decode
+set thorough_search
+unset mark_old
+unset confirmappend
+unset move
 
 # REMOTE GMAIL FOLDERS
-set from                = 'YOUR_USERNAME@gmail.com'
-set realname            = 'YOUR NAME'
-set imap_user           = 'YOUR_USERNAME@gmail.com'
-set imap_pass           = 'YOUR_PASSWORD'
-set smtp_url            = 'smtp://YOUR_USERNAME@smtp.gmail.com:587'
-set smtp_pass           = 'YOUR_PASSWORD' # use the same password as for IMAP
-set folder              = 'imaps://imap.gmail.com:993'
-set spoolfile           = '+INBOX'
-set postponed           = '=[Gmail]/Drafts'
-set copy                = no
-set trash               = '=[Gmail]/Trash'
+set realname			= 'YOUR NAME'
+set from				= 'USERNAME@gmail.com'
+set imap_user			= 'USERNAME@gmail.com'
+set imap_pass			= 'APP_PASSWORD'
+set smtp_pass			= 'APP_PASSWORD'
+set smtp_url			= 'smtp://USERNAME@smtp.gmail.com:587'
+set folder				= 'imaps://imap.gmail.com:993'
+set spoolfile			= '+INBOX'
+set postponed			= '=[Gmail]/Drafts'
+set copy				= no
+set trash				= '=[Gmail]/Trash'
 
 # LOCAL FOLDERS FOR CACHED HEADERS AND CERTIFICATES
-set header_cache        = ~/.mutt/cache/headers
-set message_cachedir    = ~/.mutt/cache/bodies
-set certificate_file    = ~/.mutt/certificates
+set header_cache		= ~/.mutt/cache/headers
+set message_cachedir	= ~/.mutt/cache/bodies
+set certificate_file	= ~/.mutt/certificates
 
 # THEME
-source                  ~/.mutt/colors.zenburn
+source					~/.mutt/colors.zenburn
 
 # LAYOUT
-alternative_order       text/plain text/html *
-auto_view               text/html
-set sort                = 'threads'
-set sort_aux            = 'reverse-last-date-received'
-set auto_tag            = yes
-set pager_index_lines   = 10
-#set date_format            = "%y-%m-%d %T"
-set date_format         = "%Y-%m-%d %H:%M:%S %Z"
-#set index_format       = "%4C %Z [%{%Y-%m-%d %H:%M:%S%p %Z}] %-30.30F (%-4.4c) %s"
-set index_format        = "%4C %Z %[!%y/%m/%d %I:%M%P]  %-30.30F %s"
+alternative_order		text/plain text/html *
+auto_view				text/html
+set sort				= 'threads'
+set sort_aux			= 'reverse-last-date-received'
+set auto_tag			= yes
+set pager_index_lines	= 10
+#set date_format			= "%y-%m-%d %T"
+set date_format			= "%Y-%m-%d %H:%M:%S %Z"
+#set index_format		= "%4C %Z [%{%Y-%m-%d %H:%M:%S%p %Z}] %-30.30F (%-4.4c) %s"
+set index_format		= "%4C %Z %[!%y/%m/%d %I:%M%P]  %-30.30F %s"
 
 # SIDEBAR
-mailboxes               '+INBOX' '=[Gmail]/Starred' '=[Gmail]/Sent Mail' '=[Gmail]/Drafts' '=[Gmail]/All Mail' '=[Gmail]/Trash' '=Canara'
-set sidebar_width       = 20
-set sidebar_visible     = yes
-set sidebar_delim       = '|'
-set sidebar_sort        = no
+mailboxes				'+INBOX' '=[Gmail]/Starred' '=[Gmail]/Sent Mail' '=[Gmail]/Drafts' '=[Gmail]/All Mail' '=[Gmail]/Trash' '=Canara'
+set sidebar_width		= 20
+set sidebar_visible		= yes
+set sidebar_delim		= '|'
+set sidebar_sort		= no
+set sidebar_format		= '%B%* %N'
 bind index CP sidebar-prev
 bind index CN sidebar-next
 bind index CO sidebar-open
@@ -53,20 +63,20 @@ bind pager CO sidebar-open
 color sidebar_new yellow default
 
 # ALIASES / CONTACTS
-set display_filter      = '$HOME/.mutt/aliases.sh'
-set alias_file          = "~/.mutt/aliases"
-set sort_alias          = alias
-set reverse_alias       = yes
+set display_filter		= '$HOME/.mutt/aliases.sh'
+set alias_file			= "~/.mutt/aliases"
+set sort_alias			= alias
+set reverse_alias		= yes
 source $alias_file
 
 # SECURING
-set move                = no
-set imap_keepalive      = 900
-set pgp_sign_as         = 0x191F54BB
-set pgp_timeout         = 60
-set pgp_good_sign       = "^gpg: Good signature from"
-set crypt_verify_sig    = yes
-set crypt_autopgp       = yes
+set move				= no
+set imap_keepalive		= 900
+set pgp_sign_as			= 0x191F54BB
+set pgp_timeout			= 60
+set pgp_good_sign		= "^gpg: Good signature from"
+set crypt_verify_sig	= yes
+set crypt_autopgp		= yes
 set crypt_autosign
 set crypt_replysign
 
@@ -76,12 +86,15 @@ source ~/.mutt/crypto
 # MACRO BINDING
 bind index G imap-fetch-mail
 bind editor <space> noop
-bind  index,pager i  flag-message   #Star a message
-bind  index,pager R  group-reply    #Reply all
-#macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
+bind  index,pager i  flag-message	#Star a message
+bind  index,pager R  group-reply	#Reply all
+macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
 macro index,pager d "<save-message>=[Gmail]/Trash<enter><enter>" "Trash"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
 macro index,pager gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
 macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
-macro index,pager gl "<change-folder>?" "Go to 'Label'" # will take you to a list of all your Labels (similar to viewing folders).
+macro index,pager gl "<change-folder>?" "Go to 'Label'"
+
+# RIPMIME http://www.pldaniels.com/ripmime/#downloads
+macro index,pager X "<pipe-message>ripmime -q --no-ole --disable-qmail-bounce --unique_names -i - -d ~/Downloads/mutt/"
