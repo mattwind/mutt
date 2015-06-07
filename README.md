@@ -4,6 +4,9 @@ The Mutt E-Mail Client <http://www.mutt.org>
 Version 1.5.23 with sidebar and trash patches. Support IMAP, POP, SMTP and header cache.
 
 ### Prerequisites
+Enable IMAP in Gmail settings and create an App password.
+https://security.google.com/settings/security/apppasswords
+
 DB for header cache (required) 
 https://github.com/mattwind/tokyocabinet
 
